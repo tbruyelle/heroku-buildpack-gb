@@ -119,6 +119,10 @@ cd $build
 echo "-----> Running: vendor/bin/gb build all"
 vendor/bin/gb build all | indent
 
+# Install goose to perform db migration
+echo "-----> Installing goose"
+GOPATH="$build" go get bitbucket.org/liamstask/goose/cmd/goose 2>&1 | indent
+
 rm -rf $build/pkg
 rm -rf $build/vendor/bin
 rm -rf $build/vendor/pkg
