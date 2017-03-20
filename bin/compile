@@ -120,8 +120,9 @@ echo "-----> Running: vendor/bin/gb build all"
 vendor/bin/gb build all | indent
 
 # Install goose to perform db migration
-echo "-----> Installing goose"
-GOPATH="$build" go get bitbucket.org/liamstask/goose/cmd/goose 2>&1 | indent
+echo "-----> Installing vendored goose"
+GOPATH="$build/vendor" go get bitbucket.org/liamstask/goose/cmd/goose 2>&1 | indent
+mv vendor/bin/goose $build/bin
 
 rm -rf $build/pkg
 rm -rf $build/vendor/bin
